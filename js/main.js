@@ -21,7 +21,7 @@ Vue.component("nopicli", {
     computed: {
         pagetitle: function () {
             console.log(this.item.name)
-            temp = this.item.name.spilt("`")
+            temp = this.item.name.split("`")
             if (temp.length >= 1) {
                 this.mytitle = temp[0]
                 this.mydesc = temp[1]
