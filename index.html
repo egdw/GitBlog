@@ -23,7 +23,7 @@
 
     <div id="main" class="flow-list-container">
         <ul class="flow-list-ul">
-            <nopicli v-for="item in pages" :key="item.sha"></nopicli>
+            <nopicli :item="item" v-for="item in pages" :key="item.sha"></nopicli>
             <!-- <li class="flow-list-li">
                 <a>
                     <div class="summary">

@@ -13,12 +13,12 @@ Vue.component("nopicli", {
     template: '<li class="flow-list-li"><a><div class="summary"><h3 class="title">{{pagetitle}}</h3><p class="abstract">{{desc}}</p></div></a></li>',
     props: ['item'],
     data: function () {
-        model: this.item
+
     },
     computed: {
         pagetitle: function () {
-            console.log(this.model.name)
-            return this.model.name
+            console.log(this.item.name)
+            return this.item.name.replace(".md", "")
         },
         desc: function () {
 
@@ -30,7 +30,7 @@ Vue.component("nopicli", {
 
 })
 
-Vue.component("nopicli", {
+Vue.component("nopicli2", {
     template: '<li class="flow-list-li"><img class="wrap-img" src=""><a><div class="summary"><h3 class="title">{{title}}</h3><p class="abstract">{{desc}}</p></div></a></li>',
     props: ['title', 'desc', 'pic'],
     data: function () {
