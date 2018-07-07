@@ -10,22 +10,26 @@ var currentApiUrl;
 
 
 Vue.component("nopicli", {
-    template: '<li class="flow-list-li"><a><div class="summary"><h3 class="title">{{pagetitle}}</h3><p class="abstract">{{desc}}</p></div></a></li>',
+    template: '<li class="flow-list-li"><a><div class="summary"><h3 class="title">{{pagetitle}}</h3><p class="abstract">{{mydesc}}</p></div></a></li>',
     props: ['item'],
     data: function () {
-
+        return {
+            mytitle: '',
+            mydesc: '',
+        }
     },
     computed: {
         pagetitle: function () {
             console.log(this.item.name)
-            return this.item.name.replace(".md", "")
+            temp = this.item.name.spilt("`")
+            if (temp.length >= 1) {
+                this.mytitle = temp[0]
+                this.mydesc = temp[1]
+            }else{
+                this.mytitle = temp[0]
+            }
+            return this.mytitle
         },
-        desc: function () {
-
-        },
-        pic: function () {
-
-        }
     },
 
 })
