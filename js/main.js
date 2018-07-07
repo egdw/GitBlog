@@ -6,12 +6,13 @@ var currentConfigUrl;
 var currentPageUrl;
 // 当前api的地址
 var currentApiUrl;
-
+// 真实的地址
+var realUrl;
 
 
 Vue.component("nopicli", {
-    template: '<li class="flow-list-li"><a><div class="summary"><h3 class="title">{{pagetitle}}</h3><p class="abstract">{{mydesc}}</p></div></a></li>',
-    props: ['item'],
+    template: '<li @click="forwardHandler" class="flow-list-li"><a><div class="summary"><h3 class="title">{{pagetitle}}</h3><p class="abstract">{{mydesc}}</p></div></a><hr/></li>',
+    props: ['item', 'download_url'],
     data: function () {
         return {
             mytitle: '',
@@ -25,23 +26,18 @@ Vue.component("nopicli", {
             if (temp.length >= 1) {
                 this.mytitle = temp[0]
                 this.mydesc = temp[1]
-            }else{
+            } else {
                 this.mytitle = temp[0]
             }
             return this.mytitle
         },
-    },
-
-})
-
-Vue.component("nopicli2", {
-    template: '<li class="flow-list-li"><img class="wrap-img" src=""><a><div class="summary"><h3 class="title">{{title}}</h3><p class="abstract">{{desc}}</p></div></a></li>',
-    props: ['title', 'desc', 'pic'],
-    data: function () {
-
+    }, methods: {
+        forwardHandler: function () {
+            window.location.href = "details.html?url=" + this.download_url;
+        }
     }
-})
 
+})
 
 var vm = new Vue({
     el: '#main',
@@ -53,23 +49,11 @@ var vm = new Vue({
     }
 })
 
-
-// 把markdown转换为html代码.通过使用showdown.js
-function compileMarkDown() {
-    //获取要转换的文字
-    var text = document.getElementById("content").value;
-    //创建实例
-    var converter = new showdown.Converter();
-    //进行转换
-    var html = converter.makeHtml(text);
-    //展示到对应的地方
-
-}
-
 $(document).ready(function () {
 
     // 获取配置文件的地址
     url = window.location.href;
+    this.realUrl = url;
     url = url.replace("/index.html", "/")
     if (url.length > 0) {
         if (url.charAt(url.length - 1) == '/') {
