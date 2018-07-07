@@ -11,10 +11,38 @@
     <script src="./js/vue.js"></script>
     <script src="./js/markdown.js"></script>
 </head>
+<nav>
+    <div id="nav_top">
+        <div id="logo">
+            <h1>恶搞大王的博客</h1>
+        </div>
+    </div>
+</nav>
 
 <body>
-    <div id="main">
-       
+
+    <div id="main" class="flow-list-container">
+        <ul class="flow-list-ul">
+            <nopicli v-for="item in pages" :key="item.sha"></nopicli>
+            <!-- <li class="flow-list-li">
+                <a>
+                    <div class="summary">
+                        <h3 class="title">天道好轮回，苍天饶过谁？</h3>
+                        <p class="abstract">前几天，“王凤雅之死”在舆论届掀起了轩然大波。一篇自媒体文《王凤雅小朋友之死》称河南太康县一位两岁半女童王凤雅被诊...</p>
+                    </div>
+                </a>
+            </li>
+            <li class="flow-list-li">
+                <a href="##">
+                    <img class="wrap-img" src="https://upload-images.jianshu.io/upload_images/12184349-6ff6ab31f16eee94.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/160/h/160/format/webp">
+                    <div class="summary">
+                        <h3 class="title">天道好轮回，苍天饶过谁？</h3>
+                        <p class="abstract">前几天，“王凤雅之死”在舆论届掀起了轩然大波。一篇自媒体文《王凤雅小朋友之死》称河南太康县一位两岁半女童王凤雅被诊...</p>
+                    </div>
+                </a>
+            </li> -->
+            
+        </ul>
     </div>
 </body>
 <script src="./js/main.js"></script>
