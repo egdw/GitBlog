@@ -12,7 +12,7 @@ var realUrl;
 
 Vue.component("nopicli", {
     template: '<li @click="forwardHandler" class="flow-list-li"><a><div class="summary"><h3 class="title">{{pagetitle}}</h3><p class="abstract">{{mydesc}}</p></div></a><hr/></li>',
-    props: ['item', 'download_url'],
+    props: ['item', 'download_url','page_title'],
     data: function () {
         return {
             mytitle: '',
@@ -33,7 +33,7 @@ Vue.component("nopicli", {
         },
     }, methods: {
         forwardHandler: function () {
-            window.location.href = "details.html?url=" + this.download_url;
+            window.location.href = "details.html?url=" + this.download_url+"&page_title="+this.mytitle;
         }
     }
 
@@ -71,6 +71,9 @@ $(document).ready(function () {
         url: url,
         dataType: "json",
         success: function (data, response) {
+            blog_title = data.blog_title
+            $(document).attr('title', blog_title);
+            $("#logo_title").innerText = blog_title;
             //获取到当前项目的url地址
             this.currentRepositoryUrl = data.repository_url
             this.currentApiUrl = data.api_url

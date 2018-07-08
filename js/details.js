@@ -1,7 +1,7 @@
 var vm = new Vue({
     el: '#main',
     data: {
-        message: ''
+        message: '',
     }
 })
 
@@ -9,6 +9,8 @@ var vm = new Vue({
 
 $(document).ready(function () {
     url = getQueryString("url")
+    page_title = getQueryString("page_title")
+    $(document).attr('title', page_title);
     console.log(url)
     if (url != null) {
         $.ajax({
@@ -26,7 +28,7 @@ $(document).ready(function () {
         //     dataType: "json",
         //     success: function (data, response) {
         //         download_url = data.download_url
-                
+
         //     }
         // });
     }

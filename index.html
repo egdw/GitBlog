@@ -14,7 +14,7 @@
 <nav>
     <div id="nav_top">
         <div id="logo">
-            <h1>恶搞大王的博客</h1>
+            <h1 id="logo_title">恶搞大王的博客</h1>
         </div>
     </div>
 </nav>
@@ -23,7 +23,7 @@
 
     <div id="main" class="flow-list-container">
         <ul class="flow-list-ul">
-            <nopicli :download_url="item.download_url" :item="item" v-for="item in pages" :key="item.sha"></nopicli>    
+            <nopicli :page_title="item.name" :download_url="item.download_url" :item="item" v-for="item in pages" :key="item.sha"></nopicli>    
         </ul>
     </div>
 </body>

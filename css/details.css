@@ -36,6 +36,9 @@ hr{
 
 #main{
     margin: 10px;
+    display: block;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 
 #main img{
