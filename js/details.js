@@ -5,8 +5,6 @@ var vm = new Vue({
     }
 })
 
-
-
 $(document).ready(function () {
     url = getQueryString("url")
     page_title = getQueryString("page_title")
@@ -20,17 +18,15 @@ $(document).ready(function () {
             success: function (data, response) {
                 html = compileMarkDown(data)
                 vm.message = html;
+            },
+            error: function () {
+                sweetAlert(
+                    '哎呦……',
+                    '出错了！',
+                    'error'
+                )
             }
         });
-        // $.ajax({
-        //     type: "get",
-        //     url: url,
-        //     dataType: "json",
-        //     success: function (data, response) {
-        //         download_url = data.download_url
-
-        //     }
-        // });
     }
 });
 

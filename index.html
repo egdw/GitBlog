@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.0/sweetalert.min.js"></script>
     <script src="./js/jquery.js"></script>
     <script src="./js/vue.js"></script>
     <script src="./js/markdown.js"></script>
@@ -14,7 +16,13 @@
 <nav>
     <div id="nav_top">
         <div id="logo">
-            <h1 id="logo_title">恶搞大王的博客</h1>
+            <h1 id="logo_title">{{blog_title}}
+                <small>
+                    <small>
+                        <small style="color: #5e5c5c">&nbsp;{{blog_small_title}}</small>
+                    </small>
+                </small>
+            </h1>
         </div>
     </div>
 </nav>
@@ -23,7 +31,7 @@
 
     <div id="main" class="flow-list-container">
         <ul class="flow-list-ul">
-            <nopicli :page_title="item.name" :download_url="item.download_url" :item="item" v-for="item in pages" :key="item.sha"></nopicli>    
+            <nopicli :page_title="item.name" :download_url="item.download_url" :item="item" v-for="item in pages" :key="item.sha"></nopicli>
         </ul>
     </div>
 </body>

@@ -4,17 +4,20 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/details.css" />
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.0/sweetalert.min.js"></script>
     <script src="./js/jquery.js"></script>
     <script src="./js/vue.js"></script>
     <script src="./js/markdown.js"></script>
 </head>
 <nav>
         <div id="nav_top">
-            <div id="logo" onclick="window.history.back()">
-                <h1>恶搞大王的博客</h1>
+            <div id="logo" onclick="document.referrer === '' ?
+            window.location.href = '/' :
+            window.history.go(-1);">
+                <h1>返回</h1>
             </div>
         </div>
     </nav>

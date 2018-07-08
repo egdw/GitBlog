@@ -11,8 +11,8 @@ var realUrl;
 
 
 Vue.component("nopicli", {
-    template: '<li @click="forwardHandler" class="flow-list-li"><a><div class="summary"><h3 class="title">{{pagetitle}}</h3><p class="abstract">{{mydesc}}</p></div></a><hr/></li>',
-    props: ['item', 'download_url','page_title'],
+    template: '<transition enter-active-class="animated slideInRight" leave-active-class="animated slideOutLeft"><li @click="forwardHandler" class="flow-list-li"><a><div class="summary"><h3 class="title">{{pagetitle}}</h3><p class="abstract">{{mydesc}}</p></div></a><hr/></li></transition>',
+    props: ['item', 'download_url', 'page_title'],
     data: function () {
         return {
             mytitle: '',
@@ -33,7 +33,7 @@ Vue.component("nopicli", {
         },
     }, methods: {
         forwardHandler: function () {
-            window.location.href = "details.html?url=" + this.download_url+"&page_title="+this.mytitle;
+            window.location.href = "details.html?url=" + this.download_url + "&page_title=" + this.mytitle;
         }
     }
 
@@ -46,6 +46,15 @@ var vm = new Vue({
     },
     data: {
         pages: []
+    }
+})
+
+
+var vm2 = new Vue({
+    el: '#nav_top',
+    data: {
+        blog_title: '',
+        blog_small_title: ''
     }
 })
 
@@ -71,9 +80,10 @@ $(document).ready(function () {
         url: url,
         dataType: "json",
         success: function (data, response) {
-            blog_title = data.blog_title
-            $(document).attr('title', blog_title);
-            $("#logo_title").innerText = blog_title;
+            vm2.blog_title = data.blog_title
+            vm2.blog_small_title = data.blog_small_title
+            $(document).attr('title', vm2.blog_title);
+            // $("#logo_title").innerText = blog_title;
             //获取到当前项目的url地址
             this.currentRepositoryUrl = data.repository_url
             this.currentApiUrl = data.api_url
@@ -82,6 +92,7 @@ $(document).ready(function () {
             //进行ajax请求.获取相应的数据
             console.log(this.currentRepositoryUrl)
             console.log(this.currentPageUrl)
+            
             //获取文章..
             $.ajax({
                 type: "get",
@@ -90,11 +101,23 @@ $(document).ready(function () {
                 success: function (data, response) {
                     console.log(data)
                     vm.pages = data;
-                    // for (var i = 0; i < data.length; i++) {
-                    //     console.log(data[i])
-                    // }
+                },
+                error: function () {
+                    sweetAlert(
+                        '哎呦……',
+                        '出错了！',
+                        'error'
+                    )
                 }
             });
+        },
+        error: function () {
+            sweetAlert(
+                '哎呦……',
+                '出错了！',
+                'error'
+            )
         }
+
     });
 });
